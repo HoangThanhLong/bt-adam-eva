@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HI</title>
+</head>
+<body>
+<script>
+    function Apple() {
+        this.setAppleWeight = function (weight) {
+            this.appleWeight = weight;
+        };
+        this.getAppleWeight = function () {
+            return this.appleWeight;
+        };
+        this.checkApple = function () {
+            if (this.appleWeight === 0){
+                alert("Đã ăn táo");
+            }else {
+                alert("Kích thước táo: " + this.appleWeight);
+            }
+        };
+        this.decreaseApple = function () {
+            if (this.appleWeight > 0){
+                this.appleWeight--;
+            }
+        };
+    }
+    let time = 1;
+    function Human() {
+        this.setName = function (nam) {
+            this.name = prompt("Nhập tên: ")
+        };
+        this.getName =function () {
+            return this.name;
+        };
+        this.setHumanWeight = function (weight) {
+            this.humanWeight = parseInt(prompt("Nhập cân nặng: "));
+        };
+        this.getHumanWeight =function () {
+            return this.humanWeight;
+        };
+        this.setGender =function () {
+            this.gender = prompt("Chọn giới tính: Male or FEMALE");
+        };
+        this.getGender = function () {
+            return this.gender;
+        };
+        this.greeting = function () {
+            console.log("HI.Tên tôi là: " + this.name + ".Rất vui được gặp bạn");
+        };
+        this.showHumanInfo = function () {
+            document.write("Tên: " + this.name + "<br>" + "Giới tính: " + this.gender + "<br>" + "Cân nặng: " + this.humanWeight + " Kg" + "<br>");
+        };
+        this.eatApple = function (Apple) {
+            if (confirm(time + " Thời gian: " + this.name + " eat Apple?")){
+                Apple.decreaseApple();
+                Apple.getAppleWeight();
+                this.humanWeight++;
+                time++;
+            }else {
+                time++;
+            }
+        }
+    }
+    let apple = new Apple();
+    apple.setAppleWeight(10);
+    let human1 = new Human();
+    human1.setName();
+    human1.setGender();
+    human1.setHumanWeight();
+    human1.greeting();
+    human1.showHumanInfo();
+    let human2 = new Human();
+    human2.setName();
+    human2.setGender();
+    human2.setHumanWeight();
+    human2.greeting();
+    human2.showHumanInfo();
+    apple.checkApple();
+    while (apple.appleWeight > 0){
+        if (human1.eatApple(apple)){
+            document.write(time + "Thời gian: " + human1.name + "Ăn táo.Weight: " + human1.humanWeight + "Kg" + "<br>" + "Kích thước táo: "+ apple.setAppleWeight() + " kg" + "<br>")
+        } else {
+            document.write(time + " Thời gian:  " + human1.name + " Không ăn táo. Weight: " +
+                human1.humanWeight + " kg" + "<br>" + "Kích thước táo: " + apple.getAppleWeight() + " kg" + "<br>");
+        }
+        if (human2.eatApple(apple)) {
+            document.write(time + " Thời gian: " + human2.name + "Ăn táo. Weight: " +
+                human2.humanWeight + " kg" + "<br>" + "Kích thước táo:  " + apple.getAppleWeight() + " kg" + "<br>");
+        } else {
+            document.write(time + " Thời gian: " + human2.name + "Không ăn táo. Weight: " +
+                human2.humanWeight + " kg" + "<br>" + "Kích thước táo: " + apple.getAppleWeight() + " kg" + "<br>");
+        }
+    }
+    apple.checkApple();
+</script>
+</body>
+</html>
